@@ -275,28 +275,28 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Phòng Đơn Tiêu Chuẩn (1 Giường Lớn • Có 3 Phòng)',
             roomSelectName: 'Phòng Đơn (1 Giường Lớn)',
             images: [
-                { src: '/images/real_map_2.jpg', caption: 'Ảnh thực tế: Giường gỗ đệm êm, điều hòa Casper 1 chiều làm lạnh mát rượi, TV treo tường, bàn trà' },
-                { src: '/images/deluxe_room.jpg', caption: 'Không gian phòng nghỉ ngăn nắp, thoáng mát, yên tĩnh tuyệt đối cho 1-2 người' },
-                { src: '/images/bathroom.jpg', caption: 'Phòng tắm khép kín riêng biệt từng phòng, nước nóng lạnh 24/24, sạch sẽ' },
-                { src: '/images/reception.jpg', caption: 'Khu vực đón tiếp chu đáo, phục vụ 24/24 tại Nhà Nghỉ Trung Hiếu' }
+                { src: './images/real_map_2.jpg', caption: 'Ảnh thực tế: Giường gỗ đệm êm, điều hòa Casper 1 chiều làm lạnh mát rượi, TV treo tường, bàn trà' },
+                { src: './images/deluxe_room.jpg', caption: 'Không gian phòng nghỉ ngăn nắp, thoáng mát, yên tĩnh tuyệt đối cho 1-2 người' },
+                { src: './images/bathroom.jpg', caption: 'Phòng tắm khép kín riêng biệt từng phòng, nước nóng lạnh 24/24, sạch sẽ' },
+                { src: './images/reception.jpg', caption: 'Khu vực đón tiếp chu đáo, phục vụ 24/24 tại Nhà Nghỉ Trung Hiếu' }
             ]
         },
         'phong-thoang-mat': {
             title: 'Phòng Đôi Rộng Rãi (2 Giường Rộng • Có 2 Phòng)',
             roomSelectName: 'Phòng Đôi (2 Giường Rộng)',
             images: [
-                { src: '/images/real_map_1.jpg', caption: 'Ảnh thực tế: Nền gạch vân đá sáng bóng, điều hòa 1 chiều làm mát sâu, rèm cửa dày chống nắng' },
-                { src: '/images/hero_room.jpg', caption: 'Phòng 2 giường rộng rãi cho 2-4 người hoặc gia đình, ga gối mới tinh thơm tho' },
-                { src: '/images/bathroom.jpg', caption: 'Trang thiết bị vệ sinh cao cấp khép kín, vòi tắm sen nóng lạnh êm ái' }
+                { src: './images/real_map_1.jpg', caption: 'Ảnh thực tế: Nền gạch vân đá sáng bóng, điều hòa 1 chiều làm mát sâu, rèm cửa dày chống nắng' },
+                { src: './images/hero_room.jpg', caption: 'Phòng 2 giường rộng rãi cho 2-4 người hoặc gia đình, ga gối mới tinh thơm tho' },
+                { src: './images/bathroom.jpg', caption: 'Trang thiết bị vệ sinh cao cấp khép kín, vòi tắm sen nóng lạnh êm ái' }
             ]
         },
         'phong-ve-sinh': {
             title: 'Phòng Tắm & Tiện Nghi Sạch Sẽ (Trang Bị Cả 5 Phòng)',
             roomSelectName: 'Phòng Tắm & Tiện Nghi Sạch Sẽ',
             images: [
-                { src: '/images/real_map_3.jpg', caption: 'Ảnh thực tế Google Maps: Phòng tắm riêng biệt 100% trong phòng, ốp lát gạch men sạch tinh' },
-                { src: '/images/bathroom.jpg', caption: 'Hệ thống bình tắm nước nóng 24/24, vòi sen hoa tiện nghi' },
-                { src: '/images/real_map_2.jpg', caption: 'Khăn tắm giặt sấy thơm tho, xà phòng, dầu gội, bàn chải mới miễn phí' }
+                { src: './images/real_map_3.jpg', caption: 'Ảnh thực tế Google Maps: Phòng tắm riêng biệt 100% trong phòng, ốp lát gạch men sạch tinh' },
+                { src: './images/bathroom.jpg', caption: 'Hệ thống bình tắm nước nóng 24/24, vòi sen hoa tiện nghi' },
+                { src: './images/real_map_2.jpg', caption: 'Khăn tắm giặt sấy thơm tho, xà phòng, dầu gội, bàn chải mới miễn phí' }
             ]
         }
     };
