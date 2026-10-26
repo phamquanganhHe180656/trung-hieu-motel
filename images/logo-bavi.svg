@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" width="64" height="64">
+  <defs>
+    <!-- Soft Warm Sun Gradient -->
+    <linearGradient id="sunGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E89B58" />
+      <stop offset="100%" stop-color="#F6D39B" stop-opacity="0.6" />
+    </linearGradient>
+    
+    <!-- Main Ba Vi Peak (Center - Dinh Vua) -->
+    <linearGradient id="peakCenterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8F572C" />
+      <stop offset="100%" stop-color="#643A17" />
+    </linearGradient>
+    
+    <!-- Left Ba Vi Peak (Dinh Tan Vien) -->
+    <linearGradient id="peakLeftGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A87044" />
+      <stop offset="100%" stop-color="#7D4920" />
+    </linearGradient>
+    
+    <!-- Right Ba Vi Peak (Dinh Ngoc Hoa) -->
+    <linearGradient id="peakRightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C28B5E" />
+      <stop offset="100%" stop-color="#935D33" />
+    </linearGradient>
+    
+    <!-- Subtle Base Mist -->
+    <linearGradient id="mistGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#A36B42" stop-opacity="0.1" />
+      <stop offset="50%" stop-color="#A36B42" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#A36B42" stop-opacity="0.1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Golden Morning Sun of Ba Vi -->
+  <circle cx="32" cy="24" r="13" fill="url(#sunGrad)" />
+
+  <!-- Ba Vi Mountain Peak 1: Left Peak (Tan Vien) -->
+  <path d="M7 49 L23 23 L37 49 Z" fill="url(#peakLeftGrad)" opacity="0.95" />
+  <path d="M23 23 L23 49 L37 49 Z" fill="#693D1A" opacity="0.25" />
+
+  <!-- Ba Vi Mountain Peak 3: Right Peak (Ngoc Hoa) -->
+  <path d="M29 49 L45 28 L57 49 Z" fill="url(#peakRightGrad)" opacity="0.9" />
+  <path d="M45 28 L45 49 L57 49 Z" fill="#693D1A" opacity="0.3" />
+
+  <!-- Ba Vi Mountain Peak 2: Center Sacred Peak (Dinh Vua - Tallest) -->
+  <path d="M16 49 L32 15 L48 49 Z" fill="url(#peakCenterGrad)" />
+  <!-- Shading on right side of center peak -->
+  <path d="M32 15 L32 49 L48 49 Z" fill="#4B280E" opacity="0.32" />
+
+  <!-- Snow/Mist highlight on Peaks -->
+  <path d="M32 15 L28 24 L32 22 L36 24 Z" fill="#FFF8F0" opacity="0.85" />
+  <path d="M23 23 L20 29 L23 28 L26 29 Z" fill="#FFF8F0" opacity="0.75" />
+  <path d="M45 28 L42 33 L45 32 L48 33 Z" fill="#FFF8F0" opacity="0.75" />
+
+  <!-- Ground / Gentle Foothill Line -->
+  <path d="M4 49 C18 47.5, 46 47.5, 60 49" stroke="#8F572C" stroke-width="2" stroke-linecap="round" />
+  <path d="M12 53 C24 52, 40 52, 52 53" stroke="url(#mistGrad)" stroke-width="1.5" stroke-linecap="round" />
+</svg>
