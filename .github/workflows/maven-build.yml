@@ -1,0 +1,32 @@
+name: Build & Test Trung Hieu Motel
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout mã nguồn
+      uses: actions/checkout@v4
+
+    - name: Thiết lập môi trường JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Build và đóng gói dự án với Maven
+      run: mvn -B package --file pom.xml -DskipTests
+
+    - name: Lưu trữ file .jar thành phẩm (Artifacts)
+      uses: actions/upload-artifact@v4
+      with:
+        name: trung-hieu-motel-package
+        path: target/*.jar
+        retention-days: 7

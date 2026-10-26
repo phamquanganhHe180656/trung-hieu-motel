@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Quản Lý Đặt Phòng - Nhà Nghỉ Trung Hiếu</title>
+    
+    <!-- Favicon & Google Fonts -->
+    <link rel="icon" type="image/svg+xml" href="/images/logo-bavi.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --bg-primary: #F8F7F4;
+            --bg-surface: #FFFFFF;
+            --bg-subtle: #F0ECE1;
+            --text-main: #1C1917;
+            --text-muted: #57534E;
+            --text-light: #78716C;
+            --accent-wood: #A36B42;
+            --accent-wood-hover: #8B562F;
+            --brand-green: #15803D;
+            --brand-green-bg: #DCFCE7;
+            --badge-warning-bg: #FEF3C7;
+            --badge-warning-text: #B45309;
+            --badge-danger-bg: #FEE2E2;
+            --badge-danger-text: #B91C1C;
+            --border: rgba(28, 25, 23, 0.1);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-full: 9999px;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding-bottom: 60px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Top Header */
+        .admin-header {
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .admin-header-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .admin-title-area {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .admin-logo-badge {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-md);
+            background: var(--accent-wood);
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .admin-title-area h1 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .admin-title-area p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--brand-green);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 2px rgba(21, 128, 61, 0.2);
+        }
+
+        .admin-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-live-reload {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-live-reload:hover {
+            background: #E5DFD3;
+            color: var(--text-main);
+        }
+
+        .btn-view-site {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            background: var(--text-main);
+            color: #FFFFFF;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-view-site:hover {
+            background: var(--accent-wood);
+        }
+
+        .btn-logout {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: var(--radius-full);
+            background: #FEE2E2;
+            color: #B91C1C;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: 1px solid #FECACA;
+        }
+
+        .btn-logout:hover {
+            background: #FCA5A5;
+            color: #7F1D1D;
+        }
+
+        /* KPI Stats Grid */
+        .kpi-section {
+            padding: 28px 0;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 16px;
+        }
+
+        @media (min-width: 640px) {
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .kpi-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .kpi-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .kpi-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .kpi-icon.blue { background: #EFF6FF; color: #2563EB; }
+        .kpi-icon.amber { background: #FEF3C7; color: #D97706; }
+        .kpi-icon.green { background: #DCFCE7; color: #15803D; }
+        .kpi-icon.purple { background: #F3E8FF; color: #7E22CE; }
+
+        .kpi-info h3 {
+            font-size: 0.825rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 4px;
+        }
+
+        .kpi-info .number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1;
+        }
+
+        /* Filter & Search Bar */
+        .filter-bar {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border);
+            background: var(--bg-primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--text-main);
+            color: #FFFFFF;
+            border-color: var(--text-main);
+        }
+
+        .search-box {
+            position: relative;
+            min-width: 260px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 8px 14px 8px 36px;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border);
+            background: var(--bg-primary);
+            font-size: 0.85rem;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-wood);
+            background: #FFFFFF;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            pointer-events: none;
+        }
+
+        /* Table Card */
+        .table-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.875rem;
+        }
+
+        thead {
+            background: #F5F2EB;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            padding: 14px 18px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 16px 18px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: #FAF8F5;
+        }
+
+        .booking-id-badge {
+            font-weight: 700;
+            color: var(--accent-wood);
+            font-family: monospace;
+            font-size: 0.95rem;
+        }
+
+        .guest-name {
+            font-weight: 700;
+            color: var(--text-main);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .guest-phone {
+            font-size: 0.825rem;
+            color: var(--text-muted);
+        }
+
+        .action-pill-group {
+            display: inline-flex;
+            gap: 6px;
+            margin-top: 4px;
+        }
+
+        .btn-action-phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            background: var(--brand-green-bg);
+            color: var(--brand-green);
+            border-radius: var(--radius-full);
+            font-size: 0.775rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+
+        .btn-action-phone:hover {
+            background: var(--brand-green);
+            color: #FFFFFF;
+        }
+
+        .btn-action-zalo {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            background: #EFF6FF;
+            color: #1D4ED8;
+            border-radius: var(--radius-full);
+            font-size: 0.775rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+
+        .btn-action-zalo:hover {
+            background: #1D4ED8;
+            color: #FFFFFF;
+        }
+
+        /* Status Badges & Selects */
+        .status-select {
+            padding: 6px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: 1px solid var(--border);
+            outline: none;
+            cursor: pointer;
+            background-color: var(--bg-surface);
+            color: var(--text-main);
+            transition: all 0.2s;
+        }
+
+        .status-select.pending {
+            background: var(--badge-warning-bg);
+            color: var(--badge-warning-text);
+            border-color: #FCD34D;
+        }
+
+        .status-select.confirmed {
+            background: var(--brand-green-bg);
+            color: var(--brand-green);
+            border-color: #86EFAC;
+        }
+
+        .status-select.completed {
+            background: #EFF6FF;
+            color: #1E40AF;
+            border-color: #BFDBFE;
+        }
+
+        .status-select.cancelled {
+            background: var(--badge-danger-bg);
+            color: var(--badge-danger-text);
+            border-color: #FCA5A5;
+        }
+
+        .btn-delete-booking {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .btn-delete-booking:hover {
+            color: #DC2626;
+            background: #FEE2E2;
+        }
+
+        /* Guide Card */
+        .owner-guide-box {
+            margin-top: 32px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .owner-guide-box h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-wood);
+        }
+
+        .owner-guide-box ul {
+            padding-left: 20px;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        /* Empty State */
+        .empty-state {
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="container admin-header-wrap">
+            <div class="admin-title-area">
+                <div class="admin-logo-badge" style="padding: 4px; background: #FAF7F2; border: 1px solid rgba(163, 107, 66, 0.25);">
+                    <img src="/images/logo-bavi.svg" alt="Núi Ba Vì" width="36" height="36" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+                <div>
+                    <h1>Quản Lý Đặt Phòng • Nhà Nghỉ Trung Hiếu</h1>
+                    <p>
+                        <span class="status-dot"></span>
+                        Hệ thống ghi nhận đơn trực tiếp từ khách truy cập Google Maps
+                    </p>
+                </div>
+            </div>
+
+            <div class="admin-header-actions">
+                <button class="btn-live-reload" id="btnReload" onclick="location.reload();">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                    Làm Mới
+                </button>
+                <a href="/" target="_blank" class="btn-view-site">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                    Trang Khách
+                </a>
+                <a href="/admin/logout" class="btn-logout" title="Đăng xuất khỏi phiên quản trị">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    Đăng Xuất
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- KPI Summary Cards -->
+        <section class="kpi-section">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-icon blue">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    </div>
+                    <div class="kpi-info">
+                        <h3>Tổng Yêu Cầu Đặt</h3>
+                        <div class="number" th:text="${stats.total}">2</div>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-icon amber">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div class="kpi-info">
+                        <h3>Đơn Chờ Liên Hệ</h3>
+                        <div class="number" style="color: #D97706;" th:text="${stats.pending}">1</div>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-icon green">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <div class="kpi-info">
+                        <h3>Đã Liên Hệ / Xác Nhận</h3>
+                        <div class="number" style="color: #15803D;" th:text="${stats.confirmed}">1</div>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-icon purple">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <div class="kpi-info">
+                        <h3>Đánh Giá Google</h3>
+                        <div class="number">4.4 ⭐</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter & Search Bar -->
+        <div class="filter-bar">
+            <div class="filter-group">
+                <button class="filter-btn active" onclick="filterBookings('ALL', this)">Tất Cả (<span th:text="${stats.total}">2</span>)</button>
+                <button class="filter-btn" onclick="filterBookings('CHỜ XÁC NHẬN', this)">Chờ Gọi Xác Nhận (<span th:text="${stats.pending}">1</span>)</button>
+                <button class="filter-btn" onclick="filterBookings('ĐÃ LIÊN HỆ', this)">Đã Liên Hệ</button>
+                <button class="filter-btn" onclick="filterBookings('ĐÃ NHẬN PHÒNG', this)">Đã Nhận Phòng</button>
+                <button class="filter-btn" onclick="filterBookings('ĐÃ HỦY', this)">Đã Hủy</button>
+            </div>
+
+            <div class="search-box">
+                <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="searchInput" class="search-input" placeholder="Tìm theo tên hoặc SĐT khách..." onkeyup="searchBookings()">
+            </div>
+        </div>
+
+        <!-- Bookings Table -->
+        <div class="table-card">
+            <div class="table-responsive">
+                <table id="bookingsTable">
+                    <thead>
+                        <tr>
+                            <th>Mã Đơn</th>
+                            <th>Thời Gian Gửi</th>
+                            <th>Khách Hàng & Liên Hệ</th>
+                            <th>Hạng Phòng</th>
+                            <th>Hình Thức Thuê</th>
+                            <th>Dự Kiến Đến</th>
+                            <th>Ghi Chú Của Khách</th>
+                            <th>Trạng Thái Xử Lý</th>
+                            <th>Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="b : ${bookings}" th:attr="data-status=${b.status}">
+                            <td>
+                                <span class="booking-id-badge" th:text="${b.id}">TH-1021</span>
+                            </td>
+                            <td>
+                                <span th:text="${b.createdAt}">26/10/2026 11:20</span>
+                            </td>
+                            <td>
+                                <span class="guest-name" th:text="${b.fullName}">Trần Văn Hoàng</span>
+                                <span class="guest-phone" th:text="${b.phone}">0988123456</span>
+                                <div class="action-pill-group">
+                                    <a th:href="'tel:' + ${b.phone}" class="btn-action-phone" title="Gọi ngay cho khách">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                        Gọi
+                                    </a>
+                                    <a th:href="'https://zalo.me/' + ${b.phone}" target="_blank" class="btn-action-zalo" title="Nhắn tin Zalo với khách">
+                                        Zalo
+                                    </a>
+                                </div>
+                            </td>
+                            <td>
+                                <strong th:text="${b.roomType}">Phòng Đơn Tiêu Chuẩn</strong>
+                            </td>
+                            <td>
+                                <span th:text="${b.rentalType}">Nghỉ qua đêm</span>
+                            </td>
+                            <td>
+                                <div><strong th:text="${b.checkInDate}">26/10/2026</strong></div>
+                                <small style="color: var(--text-light);" th:text="${b.checkInTime}">21:30</small>
+                            </td>
+                            <td>
+                                <span style="font-size: 0.825rem; color: var(--text-muted);" th:text="${b.note != null and !b.note.isBlank() ? b.note : '—'}">—</span>
+                            </td>
+                            <td>
+                                <select class="status-select" 
+                                        th:classappend="${b.status == 'CHỜ XÁC NHẬN' ? 'pending' : (b.status == 'ĐÃ LIÊN HỆ' ? 'confirmed' : (b.status == 'ĐÃ NHẬN PHÒNG' ? 'completed' : 'cancelled'))}"
+                                        th:attr="onchange='changeStatus(\'' + ${b.id} + '\', this)'">
+                                    <option value="CHỜ XÁC NHẬN" th:selected="${b.status == 'CHỜ XÁC NHẬN'}">⏳ Chờ xác nhận</option>
+                                    <option value="ĐÃ LIÊN HỆ" th:selected="${b.status == 'ĐÃ LIÊN HỆ'}">📞 Đã liên hệ</option>
+                                    <option value="ĐÃ NHẬN PHÒNG" th:selected="${b.status == 'ĐÃ NHẬN PHÒNG'}">🔑 Đã nhận phòng</option>
+                                    <option value="ĐÃ HỦY" th:selected="${b.status == 'ĐÃ HỦY'}">❌ Đã hủy đơn</option>
+                                </select>
+                            </td>
+                            <td>
+                                <button class="btn-delete-booking" th:attr="onclick='deleteBookingRow(\'' + ${b.id} + '\')'" title="Xóa đơn này">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Zalo Customer Care & Fast Response Card -->
+        <div class="zalo-config-card" style="margin-top: 28px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm);">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; gap: 14px;">
+                    <div style="width: 46px; height: 46px; border-radius: 12px; background: #0068FF; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.3rem;">
+                        Zalo
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin: 0 0 4px 0;">Trung Tâm Kết Nối & Chăm Sóc Khách Qua Zalo</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">Hotline Zalo chính thức: <strong style="color: #0068FF;">0962 192 381</strong> • Trực 24/24 tiếp nhận và xác nhận đơn đặt phòng tức thì.</p>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <a href="https://chat.zalo.me" target="_blank" rel="noopener" class="btn-primary" style="background: #0068FF; border-color: #0068FF; display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; font-size: 0.85rem;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        Mở Zalo Web (chat.zalo.me)
+                    </a>
+                    <a href="https://zalo.me/0962192381" target="_blank" rel="noopener" class="btn-live-reload" style="padding: 8px 14px; font-size: 0.85rem;">
+                        Mở App Zalo
+                    </a>
+                </div>
+            </div>
+
+            <!-- Zalo Quick Reply Templates -->
+            <div style="margin-top: 16px;">
+                <h4 style="font-size: 0.925rem; font-weight: 700; color: var(--text-main); margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                    <span>⚡</span> Mẫu Tin Nhắn Zalo Soạn Sẵn (Bấm 1 Click Để Sao Chép Gửi Khách):
+                </h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px;">
+                    <!-- Template 1 -->
+                    <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="font-size: 0.8rem; font-weight: 700; color: #0068FF; margin-bottom: 6px; text-transform: uppercase;">1. Xác nhận giữ phòng cho khách</div>
+                            <p id="zaloTpl1" style="font-size: 0.825rem; color: #334155; line-height: 1.5; margin-bottom: 10px;">"Nhà nghỉ Trung Hiếu xin chào quý khách! Chúng tôi đã nhận được thông tin đặt phòng của bạn. Phòng đã được chuẩn bị sạch sẽ, ga mới thơm tho, nước nóng và điều hòa sẵn sàng. Khi gần đến nơi, bạn vui lòng gọi 0962 192 381 để lễ tân đón tiếp chu đáo nhé!"</p>
+                        </div>
+                        <button type="button" class="btn-live-reload" onclick="copyZaloTemplate('zaloTpl1', this)" style="align-self: flex-start; padding: 5px 12px; font-size: 0.78rem;">
+                            📋 Sao chép tin nhắn
+                        </button>
+                    </div>
+
+                    <!-- Template 2 -->
+                    <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="font-size: 0.8rem; font-weight: 700; color: #0068FF; margin-bottom: 6px; text-transform: uppercase;">2. Báo giá phòng minh bạch</div>
+                            <p id="zaloTpl2" style="font-size: 0.825rem; color: #334155; line-height: 1.5; margin-bottom: 10px;">"Dạ Nhà nghỉ Trung Hiếu (Xuân Khanh, Sơn Tây) xin báo giá phòng: Nghỉ theo tiếng là 90.000đ/1 tiếng đầu (mỗi tiếng tiếp theo chỉ +10k). Nghỉ qua đêm: 250k - 300k. Thuê cả ngày: 300k - 350k. Không phụ phí, có bãi đỗ xe máy và ô tô an toàn 24/7 ạ!"</p>
+                        </div>
+                        <button type="button" class="btn-live-reload" onclick="copyZaloTemplate('zaloTpl2', this)" style="align-self: flex-start; padding: 5px 12px; font-size: 0.78rem;">
+                            📋 Sao chép tin nhắn
+                        </button>
+                    </div>
+
+                    <!-- Template 3 -->
+                    <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="font-size: 0.8rem; font-weight: 700; color: #0068FF; margin-bottom: 6px; text-transform: uppercase;">3. Hướng dẫn chỉ đường Google Maps</div>
+                            <p id="zaloTpl3" style="font-size: 0.825rem; color: #334155; line-height: 1.5; margin-bottom: 10px;">"Dạ địa chỉ nhà nghỉ: Số 202, Ngõ 178, Phường Xuân Khanh, Thị Xã Sơn Tây, Hà Nội (khu vực Tùng Thiện). Quý khách bấm link sau để bản đồ tự động chỉ đường ngắn nhất nhé: https://maps.app.goo.gl/zPP6jYdYyocacx5a6 hoặc gọi 0962 192 381 ạ!"</p>
+                        </div>
+                        <button type="button" class="btn-live-reload" onclick="copyZaloTemplate('zaloTpl3', this)" style="align-self: flex-start; padding: 5px 12px; font-size: 0.78rem;">
+                            📋 Sao chép tin nhắn
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 16px; padding: 12px 16px; background: #EFF6FF; border-radius: 8px; border: 1px dashed #93C5FD; font-size: 0.8rem; color: #1E40AF;">
+                💡 <strong>Mẹo chăm sóc khách nhanh:</strong> Tại bảng danh sách đặt phòng bên trên, ở mỗi dòng khách hàng đều có sẵn nút <strong>"Zalo"</strong> màu xanh. Lễ tân chỉ cần bấm vào đó là trình duyệt sẽ tự động mở cuộc trò chuyện Zalo với số điện thoại của khách ngay lập tức!
+            </div>
+        </div>
+
+        <!-- Practical Guide for Motel Owner -->
+        <div class="owner-guide-box">
+            <h4>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                Hướng Dẫn Sử Dụng Dành Riêng Cho Bác Chủ Nhà Nghỉ / Lễ Tân:
+            </h4>
+            <ul>
+                <li><strong>Dữ liệu lưu trữ:</strong> Toàn bộ đơn đặt phòng được hệ thống tự động lưu vào tệp dữ liệu <code>data/bookings.json</code>. Dù tắt máy hay khởi động lại máy chủ, toàn bộ thông tin khách không bao giờ bị mất.</li>
+                <li><strong>Thao tác 1-chạm:</strong> Khi có khách đặt phòng, lễ tân chỉ cần bấm nút <strong>"Gọi"</strong> để gọi điện trực tiếp từ điện thoại hoặc nút <strong>"Zalo"</strong> để mở cửa sổ chat xác nhận ngay tức thì.</li>
+                <li><strong>Xem trên điện thoại:</strong> Mở đường dẫn <code>http://[Địa_chỉ_web]/admin</code> trên điện thoại, bấm vào biểu tượng <i>Chia sẻ</i> của trình duyệt > chọn <strong>"Thêm vào Màn hình chính (Add to Home Screen)"</strong> để mở nhanh như 1 app quản lý nhà nghỉ!</li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- JavaScript for Live Interactivity -->
+    <script>
+        // 1. Change Status via AJAX
+        async function changeStatus(bookingId, selectElem) {
+            const newStatus = selectElem.value;
+            selectElem.className = 'status-select ' + 
+                (newStatus === 'CHỜ XÁC NHẬN' ? 'pending' : 
+                (newStatus === 'ĐÃ LIÊN HỆ' ? 'confirmed' : 
+                (newStatus === 'ĐÃ NHẬN PHÒNG' ? 'completed' : 'cancelled')));
+
+            try {
+                const res = await fetch(`/api/admin/bookings/${bookingId}/status`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ status: newStatus })
+                });
+                if (!res.ok) alert('Không thể cập nhật trạng thái');
+            } catch (err) {
+                console.error('Lỗi cập nhật:', err);
+            }
+        }
+
+        // 2. Delete Booking via AJAX
+        async function deleteBookingRow(bookingId) {
+            if (!confirm(`Bạn có chắc chắn muốn xóa đơn đặt phòng ${bookingId}?`)) return;
+            try {
+                const res = await fetch(`/api/admin/bookings/${bookingId}`, {
+                    method: 'DELETE'
+                });
+                if (res.ok) {
+                    location.reload();
+                } else {
+                    alert('Lỗi xóa đơn');
+                }
+            } catch (err) {
+                console.error('Lỗi xóa đơn:', err);
+            }
+        }
+
+        // 3. Search Bookings
+        function searchBookings() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const rows = document.querySelectorAll('#bookingsTable tbody tr');
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                row.style.display = text.includes(query) ? '' : 'none';
+            });
+        }
+
+        // 4. Filter Bookings by Status
+        function filterBookings(status, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const rows = document.querySelectorAll('#bookingsTable tbody tr');
+            rows.forEach(row => {
+                const rowStatus = row.getAttribute('data-status');
+                if (status === 'ALL' || rowStatus === status) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // 5. Zalo Template Copy Handler
+        function copyZaloTemplate(elemId, btn) {
+            const text = document.getElementById(elemId).innerText.replace(/^"|"$/g, '');
+            navigator.clipboard.writeText(text).then(() => {
+                const origText = btn.innerHTML;
+                btn.innerHTML = '✓ Đã sao chép!';
+                btn.style.color = '#15803D';
+                btn.style.borderColor = '#15803D';
+                setTimeout(() => {
+                    btn.innerHTML = origText;
+                    btn.style.color = '';
+                    btn.style.borderColor = '';
+                }, 2500);
+            }).catch(err => {
+                alert('Không thể sao chép, vui lòng bôi đen và copy tay.');
+            });
+        }
+
+        // 6. Auto Poll every 15 seconds to check for new bookings
+        let lastCount = document.querySelectorAll('#bookingsTable tbody tr').length;
+        setInterval(async () => {
+            try {
+                const res = await fetch('/api/admin/stats');
+                if (res.ok) {
+                    const stats = await res.json();
+                    if (stats.total > lastCount) {
+                        location.reload();
+                    }
+                }
+            } catch (e) {}
+        }, 15000);
+    </script>
+</body>
+</html>

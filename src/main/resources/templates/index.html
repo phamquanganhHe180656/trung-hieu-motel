@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${motelName} + ' - Phòng Nghỉ Tiện Nghi, Giá Tốt Tại Sơn Tây'">Nhà Nghỉ Trung Hiếu - Phòng Nghỉ Tiện Nghi, Giá Tốt Tại Sơn Tây</title>
+    <meta name="description" content="Nhà Nghỉ Trung Hiếu tại Xuân Khanh - Tùng Thiện, Sơn Tây, Hà Nội. Phòng sạch sẽ, yên tĩnh, đầy đủ tiện nghi, phục vụ 24/7. Hotline: 0962 192 381.">
+    <meta name="keywords" content="nhà nghỉ trung hiếu, nhà nghỉ sơn tây, nhà nghỉ xuân khanh, nhà nghỉ tùng thiện hà nội, khách sạn sơn tây">
+    
+    <!-- Open Graph for Facebook / Zalo / Google Maps Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Nhà Nghỉ Trung Hiếu - Sơn Tây, Hà Nội">
+    <meta property="og:description" content="Không gian nghỉ ngơi yên tĩnh, sạch sẽ và riêng tư. Phục vụ 24/24. Hotline: 0962 192 381">
+    <meta property="og:image" content="/images/real_map_2.jpg">
+    <meta property="og:url" content="https://maps.app.goo.gl/zPP6jYdYyocacx5a6">
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet & Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/images/logo-bavi.svg">
+    <link rel="stylesheet" href="/css/style.css?v=2">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a href="#" class="brand-logo">
+                <div class="brand-emblem" title="Nhà Nghỉ Trung Hiếu - Cửa Ngõ Núi Ba Vì">
+                    <img src="/images/logo-bavi.svg" alt="Logo Núi Ba Vì" width="34" height="34">
+                </div>
+                <div class="brand-text-wrap">
+                    <span class="brand-name" th:text="${motelName}">Nhà Nghỉ Trung Hiếu</span>
+                    <span class="brand-subtitle">Sơn Tây • Ba Vì</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#gioi-thieu">Giới Thiệu</a></li>
+                <li><a href="#anh-thuc-te">Hình Ảnh</a></li>
+                <li><a href="#phong-nghi">Bảng Giá</a></li>
+                <li><a href="#tien-nghi">Tiện Nghi</a></li>
+                <li><a href="#vi-tri">Vị Trí</a></li>
+                <li><a href="#du-lich">Điểm Du Lịch</a></li>
+                <li><a href="#danh-gia">Đánh Giá</a></li>
+                <li><a href="#dat-phong">Đặt Phòng</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a th:href="'tel:' + ${phoneClean}" class="btn-header-call">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <span th:text="${phone}">0962 192 381</span>
+                </a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobileDrawer">
+        <a href="#gioi-thieu">Về Trung Hiếu</a>
+        <a href="#anh-thuc-te">Hình Ảnh Thực Tế Trên Google Maps</a>
+        <a href="#phong-nghi">Bảng Giá Phòng Nghỉ</a>
+        <a href="#tien-nghi">Tiện Nghi Dịch Vụ</a>
+        <a href="#vi-tri">Chỉ Đường Google Map</a>
+        <a href="#du-lich">Cẩm Nang Điểm Du Lịch Ba Vì & Sơn Tây</a>
+        <a href="#danh-gia">Đánh Giá Từ Khách Hàng</a>
+        <a href="#dat-phong">Liên Hệ & Đặt Phòng</a>
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+            <a th:href="'tel:' + ${phoneClean}" class="btn-primary" style="flex: 1; text-align: center; justify-content: center; font-size: 0.9rem;">Gọi 0962 192 381</a>
+            <a th:href="${zalo}" target="_blank" rel="noopener" class="btn-zalo" style="padding: 12px 18px; font-size: 0.9rem;">Zalo</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="gioi-thieu">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-meta-badge">
+                        <span class="stars">★★★★★</span>
+                        <span>Đánh giá 4.4/5.0 trên Google Maps</span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        Nhà Nghỉ <span>Trung Hiếu</span><br>Sơn Tây, Hà Nội
+                    </h1>
+
+                    <p class="hero-lead">
+                        Không gian nghỉ ngơi sạch sẽ, yên tĩnh và riêng tư tại Sơn Tây. Đầy đủ điều hòa 1 chiều làm lạnh mát rượi, tivi, bình nóng lạnh, wifi mạnh và phục vụ 24/24 chu đáo.
+                    </p>
+
+                    <div class="hero-address-card">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <div>
+                            <strong>Địa chỉ vị trí:</strong>
+                            <p th:text="${address}">Số 202, Ngõ 178, Phường Xuân Khanh, Thị Xã Sơn Tây, Hà Nội</p>
+                            <small style="color: var(--text-light);">(Khu vực Tùng Thiện - Xuân Khanh, Sơn Tây)</small>
+                        </div>
+                    </div>
+
+                    <div class="hero-cta-group">
+                        <a th:href="'tel:' + ${phoneClean}" class="btn-primary">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            Gọi Ngay: 0962 192 381
+                        </a>
+
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=21.1098834,105.449566" target="_blank" rel="noopener" class="btn-secondary" title="Bật ứng dụng Google Maps dẫn đường trực tiếp tới nhà nghỉ">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                            </svg>
+                            Chỉ Đường Lái Xe
+                        </a>
+
+                        <a th:href="${zalo}" target="_blank" rel="noopener" class="btn-zalo">
+                            Nhắn Zalo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-image-frame" id="heroSliderFrame">
+                        <!-- Hero Room Slider Container -->
+                        <div class="hero-slider-track" id="heroSliderTrack">
+                            <div class="hero-slide active">
+                                <img src="/images/real_map_2.jpg" alt="Ảnh thực tế phòng đơn - Giường gỗ đệm êm, điều hòa 1 chiều, TV treo tường">
+                                <span class="hero-slide-badge">Phòng Đơn Tiêu Chuẩn (1 Giường Lớn)</span>
+                            </div>
+                            <div class="hero-slide">
+                                <img src="/images/real_map_1.jpg" alt="Ảnh thực tế phòng đôi - Nền gạch vân đá sáng bóng, rèm cửa">
+                                <span class="hero-slide-badge">Phòng Đôi Rộng Rãi (2 Giường Lớn)</span>
+                            </div>
+                            <div class="hero-slide">
+                                <img src="/images/real_map_3.jpg" alt="Ảnh thực tế Google Maps - Phòng tắm & WC riêng sạch sẽ">
+                                <span class="hero-slide-badge">100% WC Khép Kín Riêng Biệt</span>
+                            </div>
+                            <div class="hero-slide">
+                                <img src="/images/hero_room.jpg" alt="Không gian phòng nghỉ ngăn nắp, ga gối mới thơm tho">
+                                <span class="hero-slide-badge">Ga Gối Mới Tinh & Thơm Tho</span>
+                            </div>
+                            <div class="hero-slide">
+                                <img src="/images/deluxe_room.jpg" alt="Không gian yên tĩnh, thoáng mát cho giấc ngủ ngon">
+                                <span class="hero-slide-badge">Không Gian Riêng Tư & Yên Tĩnh</span>
+                            </div>
+                        </div>
+
+                        <!-- Slider Navigation Controls -->
+                        <button class="hero-slider-btn prev" id="heroSliderPrev" aria-label="Ảnh trước" type="button">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </button>
+                        <button class="hero-slider-btn next" id="heroSliderNext" aria-label="Ảnh sau" type="button">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </button>
+
+                        <!-- Slider Indicators / Dots -->
+                        <div class="hero-slider-dots" id="heroSliderDots">
+                            <button class="hero-dot active" data-index="0" aria-label="Ảnh 1"></button>
+                            <button class="hero-dot" data-index="1" aria-label="Ảnh 2"></button>
+                            <button class="hero-dot" data-index="2" aria-label="Ảnh 3"></button>
+                            <button class="hero-dot" data-index="3" aria-label="Ảnh 4"></button>
+                            <button class="hero-dot" data-index="4" aria-label="Ảnh 5"></button>
+                        </div>
+
+                        <div class="hero-floating-card">
+                            <div class="floating-info">
+                                <h4>Trạng Thái Hoạt Động</h4>
+                                <p>Đang mở cửa • Phục vụ 24/24</p>
+                            </div>
+                            <a href="#dat-phong" class="btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">Đặt Ngay</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust & Transparency Badges (Checklist An Tâm) -->
+    <section class="trust-badge-strip">
+        <div class="container">
+            <div class="trust-badges-grid">
+                <div class="trust-badge-card">
+                    <div class="trust-icon">🚗</div>
+                    <div class="trust-text">
+                        <strong>Bãi Đỗ Xe An Toàn</strong>
+                        <span>Chỗ đỗ ô tô & xe máy rộng rãi, camera 24/7</span>
+                    </div>
+                </div>
+                <div class="trust-badge-card">
+                    <div class="trust-icon">🚿</div>
+                    <div class="trust-text">
+                        <strong>Nước Nóng 24/24</strong>
+                        <span>Hệ thống nóng lạnh công suất lớn, sen tắm êm</span>
+                    </div>
+                </div>
+                <div class="trust-badge-card">
+                    <div class="trust-icon">📶</div>
+                    <div class="trust-text">
+                        <strong>Wifi Tốc Độ Cao</strong>
+                        <span>Mạng cáp quang tốc độ cao riêng từng tầng</span>
+                    </div>
+                </div>
+                <div class="trust-badge-card">
+                    <div class="trust-icon">❄️</div>
+                    <div class="trust-text">
+                        <strong>Điều Hòa 1 Chiều</strong>
+                        <span>Làm mát nhanh, chạy êm ái, xua tan oi bức ngày hè</span>
+                    </div>
+                </div>
+                <div class="trust-badge-card">
+                    <div class="trust-icon">🕒</div>
+                    <div class="trust-text">
+                        <strong>Linh Hoạt 24/7</strong>
+                        <span>Nhận phòng bất kể ngày đêm, thủ tục chỉ 1 phút</span>
+                    </div>
+                </div>
+                <div class="trust-badge-card">
+                    <div class="trust-icon">✨</div>
+                    <div class="trust-text">
+                        <strong>Khử Khuẩn Sạch Sẽ</strong>
+                        <span>Ga gối, khăn tắm thơm tho thay mới sau mỗi lượt</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Highlights -->
+    <section class="features-section">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-icon-wrap">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Phục Vụ 24/7</h3>
+                    <p>Lễ tân trực 24/24, đón tiếp quý khách bất kỳ thời điểm nào trong ngày và đêm.</p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon-wrap">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <h3>Sạch Sẽ & Thoáng Mát</h3>
+                    <p>Được khách hàng Google Maps đánh giá 5 sao về độ sạch sẽ, ga gối giặt mới thơm tho.</p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon-wrap">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="1" x2="12" y2="23"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </div>
+                    <h3>Giá Cả Bình Dân</h3>
+                    <p>Mức giá thuê theo giờ, qua đêm hoặc theo ngày cực kỳ hợp lý, không phụ phí.</p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon-wrap">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                    </div>
+                    <h3>Chỗ Để Xe An Toàn</h3>
+                    <p>Khu vực đỗ xe máy và ô tô thuận tiện, camera an ninh bảo vệ giám sát liên tục.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Real Photos Showcase from Google Maps -->
+    <section class="real-gallery-section" id="anh-thuc-te">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Hình Ảnh Thực Tế</span>
+                <h2 class="section-title">Ảnh Chụp Thực Tế Trên Google Maps</h2>
+                <p class="section-desc">Hình ảnh trung thực 100% được cập nhật trực tiếp từ hồ sơ Google Maps của Nhà Nghỉ Trung Hiếu.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <span class="gallery-badge">Google Maps Photo</span>
+                    <img src="/images/real_map_2.jpg" alt="Phòng ngủ thực tế trang bị tivi, điều hòa Casper, bàn ghế tiếp khách">
+                    <div class="gallery-caption">Phòng ngủ đầy đủ điều hòa Casper, tivi, bàn trà và khăn tắm sạch sẽ.</div>
+                </div>
+
+                <div class="gallery-item">
+                    <span class="gallery-badge">Google Maps Photo</span>
+                    <img src="/images/real_map_1.jpg" alt="Phòng nghỉ gọn gàng, nền gạch vân đá, rèm cửa cản nắng">
+                    <div class="gallery-caption">Không gian thoáng mát, nền gạch vân đá sáng bóng, rèm cửa chống nắng.</div>
+                </div>
+
+                <div class="gallery-item">
+                    <span class="gallery-badge">Google Maps Photo</span>
+                    <img src="/images/real_map_3.jpg" alt="Phòng tắm khép kín sạch sẽ với vòi sen tắm nóng lạnh">
+                    <div class="gallery-caption">Phòng vệ sinh khép kín, nước nóng lạnh 24/24, sạch sẽ tinh tươm.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms and Rates Section -->
+    <section class="rooms-section" id="phong-nghi">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Quy Mô & Bảng Giá Minh Bạch</span>
+                <h2 class="section-title">Danh Mục Phòng Nghỉ</h2>
+                <p class="section-desc">Nhà Nghỉ Trung Hiếu có quy mô <strong>05 phòng khép kín sạch sẽ</strong>: gồm <strong>03 Phòng Đơn</strong> (1 giường lớn) và <strong>02 Phòng Đôi</strong> (2 giường rộng rãi), phục vụ 24/24 với mức giá bình dân, không phụ phí.</p>
+            </div>
+
+            <!-- Room Capacity & Feature Bar -->
+            <div class="room-capacity-summary">
+                <div class="capacity-pill">
+                    <span class="pill-icon">🛏️</span>
+                    <div class="pill-info">
+                        <strong>03 Phòng Đơn</strong>
+                        <span>1 Giường lớn (1m6 - 1m8) • 1-2 khách</span>
+                    </div>
+                </div>
+                <div class="capacity-pill">
+                    <span class="pill-icon">👥</span>
+                    <div class="pill-info">
+                        <strong>02 Phòng Đôi</strong>
+                        <span>2 Giường rộng rãi • 2-4 khách</span>
+                    </div>
+                </div>
+                <div class="capacity-pill">
+                    <span class="pill-icon">❄️</span>
+                    <div class="pill-info">
+                        <strong>Điều Hòa 1 Chiều</strong>
+                        <span>Casper làm lạnh nhanh, chạy êm</span>
+                    </div>
+                </div>
+                <div class="capacity-pill">
+                    <span class="pill-icon">🚿</span>
+                    <div class="pill-info">
+                        <strong>100% WC Khép Kín</strong>
+                        <span>Nóng lạnh 24/24, sen tắm khỏe</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rooms-grid">
+                <!-- Room 1: Phòng Đơn (03 Phòng) -->
+                <div class="room-card">
+                    <span class="room-badge-count">Có 03 Phòng Đơn</span>
+                    <span class="room-badge-popular">Phổ Biến</span>
+                    <div class="room-card-img-wrap">
+                        <img src="/images/real_map_2.jpg" alt="Ảnh thực tế phòng đơn tại Nhà Nghỉ Trung Hiếu">
+                    </div>
+                    <div class="room-card-body">
+                        <div class="room-meta-tags">
+                            <span class="room-meta-tag">👥 1 - 2 Khách</span>
+                            <span class="room-meta-tag">🛏️ 1 Giường Lớn (1m6 - 1m8)</span>
+                            <span class="room-meta-tag">🚪 Số lượng: 3 phòng</span>
+                        </div>
+                        <h3 class="room-card-title">Phòng Đơn Tiêu Chuẩn</h3>
+                        <p class="room-card-desc">Trang bị giường gỗ chắc chắn, đệm êm, điều hòa Casper 1 chiều làm lạnh mát sâu, tivi giải trí, bàn ghế uống trà thư giãn và quạt mát.</p>
+                        
+                        <div class="room-pricing-box">
+                            <div class="price-row">
+                                <span class="label">Nghỉ theo tiếng:</span>
+                                <span class="value">90.000đ <small>(1h đầu)</small></span>
+                            </div>
+                            <div class="price-row">
+                                <span class="label">Nghỉ qua đêm:</span>
+                                <span class="value">250.000đ</span>
+                            </div>
+                            <div class="price-row">
+                                <span class="label">Thuê cả ngày:</span>
+                                <span class="value">300.000đ</span>
+                            </div>
+                        </div>
+                        <div class="price-hourly-note">⚡ Giờ đầu: 90k • Cứ mỗi tiếng thêm chỉ +10k (2h = 100k, 3h = 110k)</div>
+
+                        <ul class="room-amenities-list">
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Giường gỗ đệm êm, ga trải sạch thay mới 100%
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Điều hòa 1 chiều Casper làm lạnh nhanh chóng
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Tivi treo tường, quạt điện & bàn trà gỗ
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                WC riêng khép kín trong phòng, sen nóng lạnh
+                            </li>
+                        </ul>
+
+                        <div class="room-card-footer">
+                            <button class="btn-book-room" data-room="Phòng Đơn (1 Giường Lớn)">Đặt Phòng Đơn</button>
+                            <a th:href="'tel:' + ${phoneClean}" class="btn-call-room" title="Gọi ngay">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            </a>
+                        </div>
+                        <button type="button" class="btn-view-gallery" data-room-id="phong-don">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            Xem Ảnh Chi Tiết Phòng Đơn
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Room 2: Phòng Đôi (02 Phòng) -->
+                <div class="room-card">
+                    <span class="room-badge-count">Có 02 Phòng Đôi</span>
+                    <div class="room-card-img-wrap">
+                        <img src="/images/real_map_1.jpg" alt="Ảnh thực tế phòng đôi rộng rãi tại Nhà Nghỉ Trung Hiếu">
+                    </div>
+                    <div class="room-card-body">
+                        <div class="room-meta-tags">
+                            <span class="room-meta-tag">👥 2 - 4 Khách</span>
+                            <span class="room-meta-tag">🛏️ 2 Giường Rộng Rãi</span>
+                            <span class="room-meta-tag">🚪 Số lượng: 2 phòng</span>
+                        </div>
+                        <h3 class="room-card-title">Phòng Đôi Rộng Rãi</h3>
+                        <p class="room-card-desc">Không gian rộng rãi, thoáng mát bố trí 2 giường ngủ lớn đệm êm, nền gạch hoa vân đá sang trọng, rèm cửa dày cản nắng, điều hòa 1 chiều mát rượi.</p>
+                        
+                        <div class="room-pricing-box">
+                            <div class="price-row">
+                                <span class="label">Nghỉ theo tiếng:</span>
+                                <span class="value">90.000đ <small>(1h đầu)</small></span>
+                            </div>
+                            <div class="price-row">
+                                <span class="label">Nghỉ qua đêm:</span>
+                                <span class="value">300.000đ</span>
+                            </div>
+                            <div class="price-row">
+                                <span class="label">Thuê cả ngày:</span>
+                                <span class="value">350.000đ</span>
+                            </div>
+                        </div>
+                        <div class="price-hourly-note">⚡ Giờ đầu: 90k • Cứ mỗi tiếng thêm chỉ +10k (2h = 100k, 3h = 110k)</div>
+
+                        <ul class="room-amenities-list">
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                2 Giường lớn thoải mái cho gia đình & nhóm bạn
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Điều hòa 1 chiều Casper làm mát cực nhanh
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Nền gạch vân đá bóng đẹp, rèm cửa cản nắng
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Wifi mạnh riêng, bàn trà & WC riêng khép kín
+                            </li>
+                        </ul>
+
+                        <div class="room-card-footer">
+                            <button class="btn-book-room" data-room="Phòng Đôi (2 Giường Rộng)">Đặt Phòng Đôi</button>
+                            <a th:href="'tel:' + ${phoneClean}" class="btn-call-room" title="Gọi ngay">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            </a>
+                        </div>
+                        <button type="button" class="btn-view-gallery" data-room-id="phong-thoang-mat">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            Xem Ảnh Chi Tiết Phòng Đôi
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Room 3: WC Khép Kín Cả 5 Phòng -->
+                <div class="room-card">
+                    <span class="room-badge-count">Trang Bị Cả 5 Phòng</span>
+                    <div class="room-card-img-wrap">
+                        <img src="/images/real_map_3.jpg" alt="Phòng Tắm & Tiện Nghi Sạch Sẽ">
+                    </div>
+                    <div class="room-card-body">
+                        <div class="room-meta-tags">
+                            <span class="room-meta-tag">🚿 100% WC Khép Kín</span>
+                            <span class="room-meta-tag">✨ Sạch Sẽ Tinh Tươm</span>
+                            <span class="room-meta-tag">♨️ Nóng Lạnh 24/24</span>
+                        </div>
+                        <h3 class="room-card-title">Phòng Tắm & WC Khép Kín</h3>
+                        <p class="room-card-desc">Cả 5 phòng nghỉ (3 phòng đơn & 2 phòng đôi) đều sở hữu WC riêng biệt trong phòng, bình tắm nóng lạnh 24/24, sen tắm áp lực nước khỏe và được cọ rửa sạch sẽ mỗi ngày.</p>
+                        
+                        <div class="room-pricing-box">
+                            <div class="price-row">
+                                <span class="label">Nghỉ theo tiếng:</span>
+                                <span class="value">Bao gồm trọn gói</span>
+                            </div>
+                            <div class="price-row">
+                                <span class="label">Nghỉ qua đêm:</span>
+                                <span class="value">Bao gồm trọn gói</span>
+                            </div>
+                            <div class="price-row">
+                                <span class="label">Thuê cả ngày:</span>
+                                <span class="value">Bao gồm trọn gói</span>
+                            </div>
+                        </div>
+                        <div class="price-hourly-note">⚡ Nước nóng lạnh 24/24 • Đầy đủ khăn tắm, bàn chải, dầu gội thơm tho</div>
+
+                        <ul class="room-amenities-list">
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Nước nóng lạnh luôn có sẵn 24/24
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Vòi tắm hoa sen & gương soi tiện nghi
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Đầy đủ bàn chải, kem đánh răng, dầu gội
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Vệ sinh và lau dọn kỹ lưỡng sau mỗi khách
+                            </li>
+                        </ul>
+
+                        <div class="room-card-footer">
+                            <button class="btn-book-room" data-room="Phòng Đơn (1 Giường Lớn)">Đặt Phòng Ngay</button>
+                            <a th:href="'tel:' + ${phoneClean}" class="btn-call-room" title="Gọi ngay">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            </a>
+                        </div>
+                        <button type="button" class="btn-view-gallery" data-room-id="phong-ve-sinh">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            Xem Ảnh Phòng Tắm WC
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5-Room Inventory Bar -->
+            <div class="room-inventory-bar">
+                <div class="inventory-header">
+                    <h3>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                            <path d="M9 3v18"></path>
+                            <path d="M15 3v18"></path>
+                            <path d="M3 9h18"></path>
+                            <path d="M3 15h18"></path>
+                        </svg>
+                        Sơ Đồ Quy Mô Phòng Nghỉ Nhà Nghỉ Trung Hiếu (05 Phòng)
+                    </h3>
+                    <span>Tất cả phòng đều có khóa riêng, an ninh & phục vụ 24/24</span>
+                </div>
+
+                <div class="inventory-grid">
+                    <div class="inventory-item">
+                        <div class="inventory-item-top">
+                            <span class="inventory-room-code">Phòng 101</span>
+                            <span class="inventory-type-badge single">Phòng Đơn</span>
+                        </div>
+                        <div class="inventory-desc">1 Giường lớn (1m6) • Tầng 1 • Điều hòa 1 chiều • WC riêng</div>
+                        <div class="inventory-status-row">
+                            <span><span class="status-dot"></span>Sẵn sàng</span>
+                            <button type="button" class="btn-select-room" data-room-name="Phòng Đơn (1 Giường Lớn)">Chọn phòng</button>
+                        </div>
+                    </div>
+
+                    <div class="inventory-item">
+                        <div class="inventory-item-top">
+                            <span class="inventory-room-code">Phòng 102</span>
+                            <span class="inventory-type-badge single">Phòng Đơn</span>
+                        </div>
+                        <div class="inventory-desc">1 Giường lớn (1m6) • Tầng 2 • Điều hòa 1 chiều • Yên tĩnh</div>
+                        <div class="inventory-status-row">
+                            <span><span class="status-dot"></span>Sẵn sàng</span>
+                            <button type="button" class="btn-select-room" data-room-name="Phòng Đơn (1 Giường Lớn)">Chọn phòng</button>
+                        </div>
+                    </div>
+
+                    <div class="inventory-item">
+                        <div class="inventory-item-top">
+                            <span class="inventory-room-code">Phòng 103</span>
+                            <span class="inventory-type-badge single">Phòng Đơn</span>
+                        </div>
+                        <div class="inventory-desc">1 Giường lớn (1m8) • Tầng 2 • Ban công thoáng • WC riêng</div>
+                        <div class="inventory-status-row">
+                            <span><span class="status-dot"></span>Sẵn sàng</span>
+                            <button type="button" class="btn-select-room" data-room-name="Phòng Đơn (1 Giường Lớn)">Chọn phòng</button>
+                        </div>
+                    </div>
+
+                    <div class="inventory-item">
+                        <div class="inventory-item-top">
+                            <span class="inventory-room-code">Phòng 201</span>
+                            <span class="inventory-type-badge double">Phòng Đôi</span>
+                        </div>
+                        <div class="inventory-desc">2 Giường rộng rãi • Tầng 1 • Gia đình / Nhóm • WC riêng</div>
+                        <div class="inventory-status-row">
+                            <span><span class="status-dot"></span>Sẵn sàng</span>
+                            <button type="button" class="btn-select-room" data-room-name="Phòng Đôi (2 Giường Rộng)">Chọn phòng</button>
+                        </div>
+                    </div>
+
+                    <div class="inventory-item">
+                        <div class="inventory-item-top">
+                            <span class="inventory-room-code">Phòng 202</span>
+                            <span class="inventory-type-badge double">Phòng Đôi</span>
+                        </div>
+                        <div class="inventory-desc">2 Giường rộng rãi • Tầng 2 • Nền gạch vân đá • Thoáng mát</div>
+                        <div class="inventory-status-row">
+                            <span><span class="status-dot"></span>Sẵn sàng</span>
+                            <button type="button" class="btn-select-room" data-room-name="Phòng Đôi (2 Giường Rộng)">Chọn phòng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Grid -->
+    <section class="amenities-section" id="tien-nghi">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Dịch Vụ Tiêu Chuẩn</span>
+                <h2 class="section-title">Tiện Nghi Luôn Sẵn Sàng</h2>
+                <p class="section-desc">Chúng tôi chú trọng từng chi tiết để mang lại sự thuận tiện và dễ chịu nhất cho mỗi lần dừng chân của quý khách.</p>
+            </div>
+
+            <div class="amenities-grid">
+                <div class="amenity-card">
+                    <div class="amenity-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+                            <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+                            <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                            <line x1="12" y1="20" x2="12.01" y2="20"></line>
+                        </svg>
+                    </div>
+                    <div class="amenity-info">
+                        <h4>Wifi Tốc Độ Cao Miễn Phí</h4>
+                        <p>Hệ thống wifi cáp quang phủ sóng mạnh mẽ khắp các phòng và sảnh đón tiếp.</p>
+                    </div>
+                </div>
+
+                <div class="amenity-card">
+                    <div class="amenity-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path>
+                        </svg>
+                    </div>
+                    <div class="amenity-info">
+                        <h4>Điều Hòa Casper 1 Chiều Làm Lạnh</h4>
+                        <p>Khả năng làm mát sâu nhanh chóng và vận hành êm ái, mang lại giấc ngủ thư thái, dễ chịu.</p>
+                    </div>
+                </div>
+
+                <div class="amenity-card">
+                    <div class="amenity-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v8"></path>
+                            <path d="M12 18v4"></path>
+                            <path d="M4.93 4.93l4.24 4.24"></path>
+                            <path d="M14.83 14.83l4.24 4.24"></path>
+                            <path d="M2 12h8"></path>
+                            <path d="M18 12h4"></path>
+                            <path d="M4.93 19.07l4.24-4.24"></path>
+                            <path d="M14.83 9.17l4.24-4.24"></path>
+                        </svg>
+                    </div>
+                    <div class="amenity-info">
+                        <h4>Nước Nóng Lạnh 24/24</h4>
+                        <p>Bình nóng lạnh công suất lớn, luôn sẵn sàng nước ấm phục vụ quý khách thư giãn.</p>
+                    </div>
+                </div>
+
+                <div class="amenity-card">
+                    <div class="amenity-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+                            <polyline points="17 2 12 7 7 2"></polyline>
+                        </svg>
+                    </div>
+                    <div class="amenity-info">
+                        <h4>Tivi Treo Tường Giải Trí</h4>
+                        <p>Màn hình tivi rõ nét phục vụ nhu cầu thư giãn, xem tin tức và phim truyện.</p>
+                    </div>
+                </div>
+
+                <div class="amenity-card">
+                    <div class="amenity-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <div class="amenity-info">
+                        <h4>Khăn Tắm & Đồ Dùng Miễn Phí</h4>
+                        <p>Khăn tắm sạch, dầu gội, sữa tắm, bàn chải đánh răng và dép đi trong phòng.</p>
+                    </div>
+                </div>
+
+                <div class="amenity-card">
+                    <div class="amenity-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <div class="amenity-info">
+                        <h4>An Ninh & Bảo Vệ 24/7</h4>
+                        <p>Camera an ninh giám sát các khu vực chung, đảm bảo sự an tâm tuyệt đối cho khách.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Direct Map Section -->
+    <section class="location-section" id="vi-tri">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Vị Trí & Hướng Dẫn Đường Đi</span>
+                <h2 class="section-title">Dễ Dàng Tìm Thấy Trên Bản Đồ</h2>
+                <p class="section-desc">Nhà nghỉ nằm ngay khu vực Xuân Khanh - Tùng Thiện, Sơn Tây, giao thông thuận tiện di chuyển tới trung tâm thị xã và các khu du lịch Ba Vì.</p>
+            </div>
+
+            <div class="location-layout">
+                <div class="location-details">
+                    <h3 th:text="${motelName}">Nhà Nghỉ Trung Hiếu</h3>
+                    <p class="lead-text">Quý khách có thể bấm trực tiếp nút "Mở Chỉ Đường Google Maps" bên dưới để ứng dụng bản đồ tự động chỉ tuyến đường ngắn nhất từ vị trí của bạn.</p>
+
+                    <div class="location-info-list">
+                        <div class="loc-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <div class="loc-item-text">
+                                <strong>Địa chỉ cụ thể:</strong>
+                                <span th:text="${address}">Số 202, Ngõ 178, Phường Xuân Khanh, Thị Xã Sơn Tây, Hà Nội</span>
+                            </div>
+                        </div>
+
+                        <div class="loc-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                            <div class="loc-item-text">
+                                <strong>Mã Plus Code Google Maps:</strong>
+                                <span>4C5X+XR Tùng Thiện, Sơn Tây, Hà Nội</span>
+                            </div>
+                        </div>
+
+                        <div class="loc-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            <div class="loc-item-text">
+                                <strong>Hotline hỗ trợ chỉ đường:</strong>
+                                <span>0962 192 381 (Bác chủ nhà sẵn sàng hướng dẫn đường đi)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="location-buttons">
+                        <a th:href="${googleMapsUrl}" target="_blank" rel="noopener" class="btn-primary">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                            </svg>
+                            Mở Chỉ Đường Google Maps
+                        </a>
+                        <button class="btn-secondary btn-copy-info" data-copy="Số 202, Ngõ 178, Phường Xuân Khanh, Thị Xã Sơn Tây, Hà Nội">
+                            Sao Chép Địa Chỉ
+                        </button>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=21.1098834,105.449566+(Nh%C3%A0+Ngh%E1%BB%89+Trung+hi%E1%BA%BFu)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" 
+                        title="Bản đồ vị trí Nhà Nghỉ Trung Hiếu trên Google Maps"
+                        loading="lazy" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Attractions & Tourism Distance Guide (Cẩm nang du lịch Sơn Tây - Ba Vì) -->
+    <section class="attractions-section" id="du-lich">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Cẩm Nang Du Lịch & Khám Phá</span>
+                <h2 class="section-title">Khoảng Cách Tới Các Điểm Nổi Tiếng</h2>
+                <p class="section-desc">Tọa lạc tại Xuân Khanh - Sơn Tây, Nhà Nghỉ Trung Hiếu là điểm dừng chân lý tưởng để kết nối nhanh chóng đến các danh lam thắng cảnh và di tích lịch sử:</p>
+            </div>
+
+            <div class="attractions-grid">
+                <!-- 1. Thành Cổ Sơn Tây -->
+                <div class="attraction-card">
+                    <div class="attraction-img-wrap">
+                        <img src="/images/thanh_co_son_tay.jpg" alt="Ảnh thực tế Thành Cổ Sơn Tây với cổng đá ong cổ kính" loading="lazy">
+                        <span class="attraction-img-badge">⏱️ ~10 phút • 5.5 km</span>
+                    </div>
+                    <div class="attraction-body">
+                        <div>
+                            <h3>Thành Cổ Sơn Tây</h3>
+                            <p class="attraction-desc">Xây dựng năm 1822 thời vua Minh Mạng, đây là tòa thành quân sự độc nhất vô nhị miền Bắc xây hoàn toàn bằng đá ong đặc trưng Xứ Đoài. Bao quanh là hào nước trong mát, hàng cây cổ thụ xanh rợp bóng và tuyến phố đi bộ cuối tuần nhộn nhịp.</p>
+                        </div>
+                        <a href="https://www.google.com/maps/dir/21.1098834,105.449566/Th%C3%A0nh+c%E1%BB%95+S%C6%A1n+T%C3%A2y" target="_blank" rel="noopener" class="attraction-route-link">
+                            <span>Chỉ đường từ nhà nghỉ (5.5 km)</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2. Vườn Quốc Gia Ba Vì -->
+                <div class="attraction-card">
+                    <div class="attraction-img-wrap">
+                        <img src="/images/vuon_quoc_gia_ba_vi.jpg" alt="Ảnh thực tế Vườn Quốc Gia Ba Vì mây mù và rừng thông" loading="lazy">
+                        <span class="attraction-img-badge">⏱️ ~12 phút • 7.5 km</span>
+                    </div>
+                    <div class="attraction-body">
+                        <div>
+                            <h3>Vườn Quốc Gia Ba Vì</h3>
+                            <p class="attraction-desc">Khu bảo tồn thiên nhiên nổi tiếng với khí hậu trong lành mát mẻ quanh năm tựa 'Đà Lạt của Hà Nội'. Điểm đến lý tưởng với rừng thông bạt ngàn, Đền Thượng thờ Tản Viên Sơn Thánh cao 1.227m, Nhà thờ đổ Pháp cổ kính và vườn xương rồng.</p>
+                        </div>
+                        <a href="https://www.google.com/maps/dir/21.1098834,105.449566/V%C6%B0%E1%BB%9Dn+Qu%E1%BB%91c+Gia+Ba+V%C3%AC" target="_blank" rel="noopener" class="attraction-route-link">
+                            <span>Chỉ đường từ nhà nghỉ (7.5 km)</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3. Làng Cổ Đường Lâm -->
+                <div class="attraction-card">
+                    <div class="attraction-img-wrap">
+                        <img src="/images/lang_co_duong_lam.jpg" alt="Ảnh thực tế Cổng làng Mông Phụ Làng Cổ Đường Lâm" loading="lazy">
+                        <span class="attraction-img-badge">⏱️ ~10 phút • 6.0 km</span>
+                    </div>
+                    <div class="attraction-body">
+                        <div>
+                            <h3>Làng Cổ Đường Lâm</h3>
+                            <p class="attraction-desc">Di tích kiến trúc nghệ thuật quốc gia, vùng đất 'địa linh nhân kiệt' sinh ra hai vị vua: Phùng Hưng và Ngô Quyền. Đậm nét làng quê Việt xưa với cổng làng Mông Phụ, cây đa, giếng nước, đình làng và những ngôi nhà đá ong hàng trăm năm tuổi.</p>
+                        </div>
+                        <a href="https://www.google.com/maps/dir/21.1098834,105.449566/L%C3%A0ng+c%E1%BB%95+%C4%90%C6%B0%E1%BB%9Dng+L%C3%A2m" target="_blank" rel="noopener" class="attraction-route-link">
+                            <span>Chỉ đường từ nhà nghỉ (6.0 km)</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4. Khu Du Lịch Khoang Xanh - Suối Tiên -->
+                <div class="attraction-card">
+                    <div class="attraction-img-wrap">
+                        <img src="/images/khoang_xanh_suoi_tien.jpg" alt="Ảnh thực tế thác nước suối rừng Khoang Xanh Suối Tiên" loading="lazy">
+                        <span class="attraction-img-badge">⏱️ ~15 phút • 9.5 km</span>
+                    </div>
+                    <div class="attraction-body">
+                        <div>
+                            <h3>KDL Khoang Xanh – Suối Tiên</h3>
+                            <p class="attraction-desc">Khu du lịch sinh thái nổi tiếng dưới sườn đông núi Ba Vì với hơn 200 ha rừng nguyên sinh và trên 2 km suối tự nhiên. Thu hút du khách bởi dòng thác Mơ, thác Mâm Xôi trong lành, hồ tạo sóng nhân tạo và dịch vụ tắm suối khoáng nóng thư giãn.</p>
+                        </div>
+                        <a href="https://www.google.com/maps/dir/21.1098834,105.449566/Khu+Du+L%E1%BB%8Bch+Khoang+Xanh+-+Su%E1%BB%91i+Ti%C3%AAn" target="_blank" rel="noopener" class="attraction-route-link">
+                            <span>Chỉ đường từ nhà nghỉ (9.5 km)</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 5. Khu Du Lịch Ao Vua / Thiên Sơn Suối Ngà -->
+                <div class="attraction-card">
+                    <div class="attraction-img-wrap">
+                        <img src="/images/ao_vua_ba_vi.jpg" alt="Ảnh thực tế suối thác và hồ bơi tại Khu Du Lịch Ao Vua Ba Vì" loading="lazy">
+                        <span class="attraction-img-badge">⏱️ ~18 phút • 11.0 km</span>
+                    </div>
+                    <div class="attraction-body">
+                        <div>
+                            <h3>KDL Ao Vua & Thiên Sơn</h3>
+                            <p class="attraction-desc">Quần thể thắng cảnh non nước hữu tình gắn liền với huyền tích Sơn Tinh - Thủy Tinh. Nổi bật với hệ thống suối thác mát lạnh đổ từ chân núi Tản Viên, hồ nước trong vắt, công viên vui chơi và không gian sinh thái nghỉ dưỡng tĩnh lặng.</p>
+                        </div>
+                        <a href="https://www.google.com/maps/dir/21.1098834,105.449566/Ao+Vua" target="_blank" rel="noopener" class="attraction-route-link">
+                            <span>Chỉ đường từ nhà nghỉ (11 km)</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 6. Trường ĐH Công Nghiệp Việt - Hung -->
+                <div class="attraction-card">
+                    <div class="attraction-img-wrap">
+                        <img src="/images/dai_hoc_viet_hung.jpg" alt="Ảnh thực tế khuôn viên Trường Đại học Công nghiệp Việt - Hung với hồ nước và giảng đường tại Xuân Khanh" loading="lazy">
+                        <span class="attraction-img-badge">⏱️ ~3 phút • 1.2 km</span>
+                    </div>
+                    <div class="attraction-body">
+                        <div>
+                            <h3>ĐH Công Nghiệp Việt - Hung</h3>
+                            <p class="attraction-desc">Trường đại học công lập bề thế đặt tại số 16 Hữu Nghị, Phường Xuân Khanh, Sơn Tây với khuôn viên rộng rãi, hồ nước trung tâm xanh mát. Nhà Nghỉ Trung Hiếu là điểm lưu trú gần nhất, thuận tiện nhất cho quý phụ huynh, tân sinh viên về nhập học, thi cử hay công tác.</p>
+                        </div>
+                        <a href="https://www.google.com/maps/dir/21.1098834,105.449566/Tr%C6%B0%E1%BB%9Dng+%C4%90%E1%BA%A1i+H%E1%BB%8Dc+C%C3%B4ng+Nghi%E1%BB%87p+Vi%E1%BB%87t+Hung" target="_blank" rel="noopener" class="attraction-route-link">
+                            <span>Chỉ đường từ nhà nghỉ (1.2 km)</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Maps Real Reviews Showcase -->
+    <section class="reviews-section" id="danh-gia">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Đánh Giá Thực Tế Từ Google Maps</span>
+                <h2 class="section-title">Nhận Xét Của Khách Hàng</h2>
+                <p class="section-desc">Các bình luận và đánh giá thực tế của khách hàng trực tiếp trên hồ sơ Google Maps của Nhà Nghỉ Trung Hiếu (Điểm trung bình 4.4⭐).</p>
+            </div>
+
+            <div class="reviews-grid">
+                <!-- Review 1: Lê Quang (Real Comment) -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">Q</div>
+                        <div>
+                            <div class="review-user-name">
+                                Lê Quang
+                                <span class="verified-icon" title="Đánh giá xác thực trên Google Maps">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                                </span>
+                            </div>
+                            <div class="review-user-date">2 năm trước • Đánh giá trên Google Maps</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-content">
+                        "Sạch sẽ thoáng mát"
+                    </p>
+                </div>
+
+                <!-- Review 2: Đồng Giang (Real Review + Owner Reply) -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">G</div>
+                        <div>
+                            <div class="review-user-name">
+                                Đồng Giang
+                                <span class="verified-icon" title="Đánh giá xác thực trên Google Maps">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                                </span>
+                            </div>
+                            <div class="review-user-date">1 năm trước • Đánh giá trên Google Maps</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-content">
+                        "Cơ sở lưu trú yên tĩnh, phòng ốc gọn gàng và chủ nhà tiếp đón rất mến khách."
+                    </p>
+                    <div class="review-owner-reply">
+                        <strong>Phản hồi từ Nhà Nghỉ Trung Hiếu (Chủ cơ sở):</strong>
+                        "Cảm ơn ạ."
+                    </div>
+                </div>
+
+                <!-- Review 3: Thắng Nguyễn (Real Review) -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">T</div>
+                        <div>
+                            <div class="review-user-name">
+                                Thang Nguyen
+                                <span class="verified-icon" title="Đánh giá xác thực trên Google Maps">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                                </span>
+                            </div>
+                            <div class="review-user-date">Đánh giá mới nhất • Google Maps</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-content">
+                        "Địa điểm nghỉ ngơi thuận tiện tại Sơn Tây, phòng ốc mát mẻ, điều hòa chạy êm và phục vụ chu đáo."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section class="booking-section" id="dat-phong">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Đặt Phòng Nhanh</span>
+                <h2 class="section-title">Giữ Phòng Trước Khi Đến</h2>
+                <p class="section-desc">Gửi thông tin để nhà nghỉ giữ phòng đẹp cho quý khách hoặc liên hệ trực tiếp hotline để được phục vụ ngay tức thì.</p>
+            </div>
+
+            <div class="booking-wrapper">
+                <div id="bookingAlert" class="booking-alert"></div>
+
+                <form id="bookingForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="fullName">Họ và tên của bạn (*)</label>
+                            <input type="text" id="fullName" class="form-control" placeholder="Ví dụ: Nguyễn Văn An" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Số điện thoại liên hệ (*)</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="Ví dụ: 0912345678" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="roomType">Loại phòng mong muốn</label>
+                            <select id="roomType" class="form-control">
+                                <option value="Phòng Đơn (1 Giường Lớn)">Phòng Đơn - 1 Giường lớn (Có 3 phòng • 1-2 người)</option>
+                                <option value="Phòng Đôi (2 Giường Rộng)">Phòng Đôi - 2 Giường rộng (Có 2 phòng • 2-4 người)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rentalType">Hình thức lưu trú</label>
+                            <select id="rentalType" class="form-control">
+                                <option value="Nghỉ theo tiếng">Nghỉ theo tiếng (90k 1h đầu • +10k/tiếng sau)</option>
+                                <option value="Nghỉ qua đêm">Nghỉ qua đêm (250.000đ - 300.000đ)</option>
+                                <option value="Thuê cả ngày">Thuê cả ngày (300.000đ - 350.000đ)</option>
+                                <option value="Lưu trú dài ngày">Lưu trú dài ngày (Ưu đãi giá tốt)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="checkInDate">Ngày nhận phòng</label>
+                            <input type="date" id="checkInDate" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="checkInTime">Giờ dự kiến đến</label>
+                            <input type="time" id="checkInTime" class="form-control" value="14:00">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="note">Ghi chú thêm (nếu có)</label>
+                            <textarea id="note" class="form-control" placeholder="Yêu cầu phòng, số lượng xe, thời gian đến cụ thể..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="booking-submit-row">
+                        <button type="submit" id="submitBookingBtn" class="btn-primary" style="padding: 14px 32px;">
+                            Gửi Yêu Cầu Đặt Phòng
+                        </button>
+                        <span class="booking-note">
+                            Cần phòng gấp? Bấm gọi <a th:href="'tel:' + ${phoneClean}" style="font-weight: 700; color: var(--accent-wood);" th:text="${phone}">0962 192 381</a>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3 th:text="${motelName}">Nhà Nghỉ Trung Hiếu</h3>
+                    <p>Địa chỉ lưu trú uy tín, kín đáo, sạch sẽ và mến khách tại Phường Xuân Khanh - Tùng Thiện, Thị Xã Sơn Tây, Hà Nội.</p>
+                    <p style="font-size: 0.825rem; color: #78716c;">Mã liên kết Google Maps: 4C5X+XR Tùng Thiện, Sơn Tây, Hà Nội</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Liên Kết Nhanh</h4>
+                    <ul class="footer-links">
+                        <li><a href="#gioi-thieu">Giới Thiệu</a></li>
+                        <li><a href="#anh-thuc-te">Ảnh Thực Tế Google Maps</a></li>
+                        <li><a href="#phong-nghi">Bảng Giá Phòng</a></li>
+                        <li><a href="#tien-nghi">Tiện Nghi Dịch Vụ</a></li>
+                        <li><a href="#vi-tri">Chỉ Đường Google Maps</a></li>
+                        <li><a href="#dat-phong">Gửi Đặt Phòng</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Thông Tin Liên Hệ</h4>
+                    <ul class="footer-links">
+                        <li><strong>Hotline:</strong> <a th:href="'tel:' + ${phoneClean}" th:text="${phone}">0962 192 381</a></li>
+                        <li><strong>Zalo:</strong> <a th:href="${zalo}" target="_blank">0962 192 381</a></li>
+                        <li><strong>Địa chỉ:</strong> Số 202, Ngõ 178, Xuân Khanh, Sơn Tây, Hà Nội</li>
+                        <li><strong>Giờ mở cửa:</strong> 24/24 giờ hàng ngày</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>© 2026 Nhà Nghỉ Trung Hiếu - Sơn Tây, Hà Nội. Giữ toàn quyền.</div>
+                <div>Website chính thức được liên kết trên Google Maps Profile</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Sticky Action Bar -->
+    <div class="mobile-action-bar">
+        <a th:href="'tel:' + ${phoneClean}" class="mobile-action-item call">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span>Gọi Điện</span>
+        </a>
+
+        <a th:href="${googleMapsUrl}" target="_blank" rel="noopener" class="mobile-action-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+            </svg>
+            <span>Chỉ Đường</span>
+        </a>
+
+        <a th:href="${zalo}" target="_blank" rel="noopener" class="mobile-action-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span>Zalo Chat</span>
+        </a>
+
+        <a href="#dat-phong" class="mobile-action-item highlight">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>Đặt Phòng</span>
+        </a>
+    </div>
+
+    <!-- Room Gallery Lightbox Modal -->
+    <div class="gallery-modal-overlay" id="galleryModal">
+        <div class="gallery-modal-container">
+            <div class="gallery-modal-header">
+                <h3 id="galleryModalTitle">Chi Tiết Phòng Nghỉ</h3>
+                <button type="button" class="btn-modal-close" id="galleryCloseBtn" aria-label="Đóng">&times;</button>
+            </div>
+            <div class="gallery-main-view">
+                <button type="button" class="gallery-nav-btn prev" id="galleryPrevBtn" aria-label="Ảnh trước">&#10094;</button>
+                <img src="/images/real_map_2.jpg" alt="Ảnh phòng nghỉ" class="gallery-main-img" id="galleryMainImg">
+                <button type="button" class="gallery-nav-btn next" id="galleryNextBtn" aria-label="Ảnh kế tiếp">&#10095;</button>
+            </div>
+            <div class="gallery-thumbnails-strip" id="galleryThumbs">
+                <!-- Dynamically populated thumbnails -->
+            </div>
+            <div class="gallery-modal-footer">
+                <span class="gallery-caption" id="galleryCaption">Ảnh thực tế tại Nhà Nghỉ Trung Hiếu</span>
+                <button type="button" class="btn-primary" id="galleryBookBtn" style="padding: 9px 20px; font-size: 0.88rem;">
+                    Chọn Đặt Phòng Này
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/main.js?v=2"></script>
+</body>
+</html>

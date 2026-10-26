@@ -1,0 +1,34 @@
+[ {
+  "id" : "TH-8631",
+  "createdAt" : "26/10/2026 11:23",
+  "fullName" : "Đặng Quốc Huy",
+  "phone" : "0977889900",
+  "roomType" : "Phòng Đơn Tiêu Chuẩn",
+  "rentalType" : "Nghỉ theo giờ",
+  "checkInDate" : "26/10/2026",
+  "checkInTime" : "15:30",
+  "note" : "Cần phòng sạch sẽ để nghỉ trưa",
+  "status" : "CHỜ XÁC NHẬN"
+}, {
+  "id" : "TH-1021",
+  "createdAt" : "26/10/2026 11:19",
+  "fullName" : "Trần Văn Hoàng",
+  "phone" : "0988123456",
+  "roomType" : "Phòng Đơn Tiêu Chuẩn",
+  "rentalType" : "Nghỉ qua đêm",
+  "checkInDate" : "26/10/2026",
+  "checkInTime" : "21:30",
+  "note" : "Khách gọi hỏi còn phòng đơn không",
+  "status" : "CHỜ XÁC NHẬN"
+}, {
+  "id" : "TH-1018",
+  "createdAt" : "26/10/2026 11:19",
+  "fullName" : "Lê Minh Tuấn",
+  "phone" : "0912998877",
+  "roomType" : "Phòng Nghỉ Thoáng Mát",
+  "rentalType" : "Nghỉ theo giờ",
+  "checkInDate" : "26/10/2026",
+  "checkInTime" : "14:00",
+  "note" : "Đi phượt Ba Vì về nghỉ trưa 3 tiếng",
+  "status" : "CHỜ XÁC NHẬN"
+} ]

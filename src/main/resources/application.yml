@@ -1,0 +1,43 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+
+spring:
+  application:
+    name: trung-hieu-motel
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    cache: false
+  web:
+    resources:
+      static-locations: classpath:/static/
+  mvc:
+    static-path-pattern: /**
+
+# Business Info Config (UTF-8 Native in YAML)
+motel:
+  name: "Nhà Nghỉ Trung Hiếu"
+  tagline: "Không gian nghỉ ngơi yên tĩnh, sạch sẽ và riêng tư tại Sơn Tây"
+  address: "Số 202, Ngõ 178, Phường Xuân Khanh, Thị Xã Sơn Tây, Hà Nội"
+  phone: "0962 192 381"
+  zalo: "https://zalo.me/0962192381"
+  google-maps-url: "https://maps.app.goo.gl/zPP6jYdYyocacx5a6"
+  rating: "4.4"
+  coordinates:
+    lat: 21.1098834
+    lng: 105.449566
+
+# Admin Security & Quick Access
+admin:
+  pin: "192381"                 # 6 số đuôi hotline: 0962 192 381
+  password: "trunghieu@admin"    # Mật khẩu chữ thay thế
+  cookie-name: "TRUNGHIEU_ADMIN_SESSION"
+  remember-days: 30             # Lưu phiên đăng nhập 30 ngày trên thiết bị chủ nhà
+
