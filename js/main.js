@@ -271,10 +271,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 6. Room Photo Gallery Modal & Lightbox
     function getAssetPath(filename) {
-        if (window.location.protocol === 'file:' || window.location.pathname.endsWith('.html')) {
-            return './images/' + filename;
-        }
-        return '/images/' + filename;
+        // Luôn dùng đường dẫn tương đối './images/' để hoạt động hoàn hảo trên
+        // GitHub Pages (/trung-hieu-motel/), file://, và Spring Boot
+        return './images/' + filename;
     }
 
     const roomGalleries = {
@@ -407,6 +406,11 @@ document.addEventListener('DOMContentLoaded', () => {
         mainImg.style.opacity = '0';
         setTimeout(() => {
             mainImg.src = item.src;
+            mainImg.alt = item.caption || 'Ảnh phòng nghỉ';
+            mainImg.onerror = function() {
+                this.onerror = null;
+                this.src = './images/204_2.jpg';
+            };
             if (captionElem) {
                 captionElem.textContent = `${item.caption} (${currentIdx + 1}/${currentGallery.images.length})`;
             }
@@ -426,7 +430,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentGallery.images.forEach((img, idx) => {
             const thumb = document.createElement('div');
             thumb.className = 'gallery-thumb-item' + (idx === 0 ? ' active' : '');
-            thumb.innerHTML = `<img src="${img.src}" alt="${img.caption}">`;
+            thumb.innerHTML = `<img src="${img.src}" alt="${img.caption}" onerror="this.onerror=null;this.src='./images/204_2.jpg'">`;
             thumb.addEventListener('click', () => {
                 currentIdx = idx;
                 updateMainImage();
