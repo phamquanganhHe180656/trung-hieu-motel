@@ -63,35 +63,35 @@ public class MotelService {
         return List.of(
             new RoomInfo(
                 "phong-don-tieu-chuan",
-                "Phòng Đơn Tiêu Chuẩn (Có 03 Phòng)",
-                "Phòng 1 giường lớn (1m6 - 1m8) đệm êm ái, điều hòa Casper 1 chiều làm lạnh mát rượi, TV treo tường, bàn trà ghế gỗ và WC riêng biệt. Thích hợp cho 1-2 người.",
+                "Phòng Đơn Tiêu Chuẩn (Có 03 Phòng: 203, 204, 205)",
+                "Phòng 1 giường lớn đệm êm ái, ga trải trắng tinh thơm tho, điều hòa Casper 1 chiều làm lạnh mát rượi, TV treo tường, bàn trà ghế gỗ và WC riêng biệt. Thích hợp cho 1-2 người.",
                 "90.000đ (1h đầu • +10k/h sau)",
                 "250.000đ",
                 "300.000đ",
-                "/images/real_map_2.jpg",
-                List.of("Có 03 phòng đơn (101, 102, 103)", "Điều hòa 1 chiều làm lạnh mát rượi", "Giường 1m6 - 1m8 đệm êm ái", "TV treo tường & Wifi tốc độ cao", "WC khép kín có nóng lạnh 24/24"),
+                "/images/204_2.jpg",
+                List.of("Có 03 phòng đơn (203, 204, 205)", "1 Giường lớn đệm êm ái", "Điều hòa Casper 1 chiều làm lạnh nhanh", "TV treo tường & Bàn trà gỗ", "100% WC khép kín có nóng lạnh 24/24"),
                 true
             ),
             new RoomInfo(
                 "phong-doi-rong-rai",
-                "Phòng Đôi Rộng Rãi (Có 02 Phòng)",
-                "Phòng 2 giường lớn rộng rãi thoáng mát, điều hòa Casper 1 chiều làm lạnh sâu nhanh chóng, bàn ghế uống trà và WC khép kín. Phù hợp cho 2-4 người hoặc gia đình nhỏ.",
-                "90.000đ (1h đầu • +10k/h sau)",
+                "Phòng Đôi Rộng Rãi (Có 02 Phòng: 201, 202)",
+                "Phòng trang bị 2 giường to rộng 2m x 1.8m thoáng mát, điều hòa Casper 1 chiều làm lạnh sâu nhanh chóng, tủ quần áo gỗ, bàn ghế uống trà và WC khép kín. Phù hợp cho 2-4 người hoặc gia đình nhỏ.",
+                "100.000đ (1h đầu • +20k/h sau)",
                 "300.000đ",
                 "350.000đ",
-                "/images/real_map_1.jpg",
-                List.of("Có 02 phòng đôi (201, 202)", "2 Giường lớn đệm êm thoải mái", "Điều hòa 1 chiều làm mát sâu", "Nền gạch vân đá sáng bóng", "WC khép kín riêng biệt từng phòng"),
+                "/images/202_2.jpg",
+                List.of("Có 02 phòng đôi (201, 202)", "2 Giường to rộng 2m x 1.8m", "Điều hòa 1 chiều làm mát sâu", "Nền gạch vân đá sáng bóng", "100% WC khép kín riêng biệt từng phòng"),
                 false
             ),
             new RoomInfo(
                 "phong-tam-ve-sinh-khep-kin",
-                "Tiện Nghi Phòng Tắm WC (Trang Bị Cả 5 Phòng)",
-                "Tất cả 5 phòng (3 phòng đơn & 2 phòng đôi) tại Nhà Nghỉ Trung Hiếu đều có nhà tắm & WC khép kín riêng biệt 100%, vòi sen nóng lạnh 24/24, gương soi và khăn tắm sạch sẽ.",
+                "Tiện Nghi Phòng Tắm WC (Trang Bị Cả 5 Phòng 201 - 205)",
+                "Tất cả 5 phòng (3 phòng đơn 203, 204, 205 & 2 phòng đôi 201, 202) tại Nhà Nghỉ Trung Hiếu đều có nhà tắm & WC khép kín riêng biệt 100%, vòi sen nóng lạnh 24/24, gương soi và khăn tắm sạch sẽ.",
                 "Đầy đủ tiện nghi",
                 "Khép kín 100%",
                 "Nóng lạnh 24/24",
                 "/images/real_map_3.jpg",
-                List.of("100% WC khép kín riêng từng phòng", "Nước nóng lạnh 24/24 cả đông lẫn hè", "Vòi tắm hoa sen & gương soi", "Khăn tắm sạch sẽ xếp sẵn", "Vệ sinh khử trùng sau mỗi lượt khách"),
+                List.of("100% WC khép kín riêng từng phòng (201 - 205)", "Nước nóng lạnh 24/24 cả đông lẫn hè", "Vòi tắm hoa sen & gương soi", "Khăn tắm sạch sẽ xếp sẵn", "Vệ sinh khử trùng sau mỗi lượt khách"),
                 false
             )
         );

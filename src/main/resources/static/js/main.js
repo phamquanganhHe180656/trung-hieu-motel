@@ -269,34 +269,103 @@ document.addEventListener('DOMContentLoaded', () => {
         dateInput.min = today;
     }
 
-    // 6. Room Photo Gallery Modal
+    // 6. Room Photo Gallery Modal & Lightbox
+    function getAssetPath(filename) {
+        if (window.location.protocol === 'file:' || window.location.pathname.endsWith('.html')) {
+            return './images/' + filename;
+        }
+        return '/images/' + filename;
+    }
+
     const roomGalleries = {
-        'phong-don': {
-            title: 'Phòng Đơn Tiêu Chuẩn (1 Giường Lớn • Có 3 Phòng)',
+        'phong-201': {
+            title: 'Phòng Đôi 201 (2 Giường To Rộng 2m x 1.8m • Tầng 2)',
+            roomSelectName: 'Phòng Đôi (2 Giường Rộng)',
+            images: [
+                { src: getAssetPath('201_1.jpg'), caption: 'Phòng 201: Giường lớn đệm êm, tranh nghệ thuật, bàn trà và khăn tắm sạch sẽ' },
+                { src: getAssetPath('202_2.jpg'), caption: 'Phòng đôi rộng rãi trang bị 2 giường to 2m x 1.8m, điều hòa Casper mát rượi' },
+                { src: getAssetPath('real_map_3.jpg'), caption: 'Phòng tắm & WC khép kín riêng biệt 100% trong phòng 201, nước nóng lạnh 24/24' }
+            ]
+        },
+        'phong-202': {
+            title: 'Phòng Đôi 202 (2 Giường To Rộng 2m x 1.8m • Tầng 2)',
+            roomSelectName: 'Phòng Đôi (2 Giường Rộng)',
+            images: [
+                { src: getAssetPath('202_2.jpg'), caption: 'Phòng 202: 2 Giường to rộng 2m x 1.8m, tủ quần áo gỗ, rèm cửa cản nắng và WC khép kín' },
+                { src: getAssetPath('202_1.jpg'), caption: 'Góc giường ngủ, TV treo tường, bàn trà tiếp khách phòng 202' },
+                { src: getAssetPath('real_map_3.jpg'), caption: 'Phòng tắm & WC khép kín riêng biệt 100% trong phòng 202, sen nóng lạnh 24/24' }
+            ]
+        },
+        'phong-203': {
+            title: 'Phòng Đơn 203 (1 Giường Lớn Tiêu Chuẩn • Tầng 2)',
             roomSelectName: 'Phòng Đơn (1 Giường Lớn)',
             images: [
-                { src: './images/real_map_2.jpg', caption: 'Ảnh thực tế: Giường gỗ đệm êm, điều hòa Casper 1 chiều làm lạnh mát rượi, TV treo tường, bàn trà' },
-                { src: './images/deluxe_room.jpg', caption: 'Không gian phòng nghỉ ngăn nắp, thoáng mát, yên tĩnh tuyệt đối cho 1-2 người' },
-                { src: './images/bathroom.jpg', caption: 'Phòng tắm khép kín riêng biệt từng phòng, nước nóng lạnh 24/24, sạch sẽ' },
-                { src: './images/reception.jpg', caption: 'Khu vực đón tiếp chu đáo, phục vụ 24/24 tại Nhà Nghỉ Trung Hiếu' }
+                { src: getAssetPath('204_2.jpg'), caption: 'Phòng 203: 1 Giường lớn đệm êm ái, ga trải trắng thơm tho, bộ bàn trà gỗ' },
+                { src: getAssetPath('204_3.jpg'), caption: 'Điều hòa Casper 1 chiều làm mát sâu, TV treo tường, rèm cửa cản nắng' },
+                { src: getAssetPath('real_map_3.jpg'), caption: 'Phòng tắm & WC khép kín riêng biệt 100% trong phòng 203' }
+            ]
+        },
+        'phong-204': {
+            title: 'Phòng Đơn 204 (1 Giường Lớn Tiêu Chuẩn • Tầng 2)',
+            roomSelectName: 'Phòng Đơn (1 Giường Lớn)',
+            images: [
+                { src: getAssetPath('204_2.jpg'), caption: 'Phòng 204: Không gian thoáng rộng, 1 giường lớn đệm êm, bàn trà hoa tươi' },
+                { src: getAssetPath('204_1.jpg'), caption: 'Góc đầu giường, tranh hoa sen nghệ thuật và sàn gạch vân đá sáng bóng' },
+                { src: getAssetPath('204_3.jpg'), caption: 'Điều hòa Casper 1 chiều làm mát nhanh, TV treo tường giải trí' },
+                { src: getAssetPath('real_map_3.jpg'), caption: 'Phòng tắm & WC riêng biệt trong phòng 204, vòi sen nước nóng lạnh 24/24' }
+            ]
+        },
+        'phong-205': {
+            title: 'Phòng Đơn 205 (1 Giường Lớn Tiêu Chuẩn • Tầng 2)',
+            roomSelectName: 'Phòng Đơn (1 Giường Lớn)',
+            images: [
+                { src: getAssetPath('205_1.jpg'), caption: 'Phòng 205: Giường đệm êm ái, điều hòa Casper 1 chiều, TV treo tường và bàn trà' },
+                { src: getAssetPath('205_2.jpg'), caption: 'Không gian phòng 205 yên tĩnh tuyệt đối, rèm cửa cản nắng' },
+                { src: getAssetPath('real_map_3.jpg'), caption: 'Phòng tắm & WC riêng biệt trong phòng 205 sạch sẽ tinh tươm' }
+            ]
+        },
+        'phong-don': {
+            title: 'Toàn Bộ Ảnh Phòng Đơn (Phòng 203, 204, 205 • Có 3 Phòng)',
+            roomSelectName: 'Phòng Đơn (1 Giường Lớn)',
+            images: [
+                { src: getAssetPath('204_2.jpg'), caption: 'Phòng 204: Toàn cảnh 1 giường lớn đệm êm, bàn trà gỗ hoa tươi, sàn vân đá' },
+                { src: getAssetPath('204_1.jpg'), caption: 'Phòng 204: Góc đầu giường gỗ và tranh hoa sen nghệ thuật ấm cúng' },
+                { src: getAssetPath('204_3.jpg'), caption: 'Phòng 204: Điều hòa Casper 1 chiều mát sâu, TV treo tường giải trí' },
+                { src: getAssetPath('205_1.jpg'), caption: 'Phòng 205: Không gian yên tĩnh, đệm êm, điều hòa làm lạnh nhanh' },
+                { src: getAssetPath('205_2.jpg'), caption: 'Phòng 205: Phòng ngủ thoáng mát, bàn ghế trà và WC khép kín' },
+                { src: getAssetPath('real_map_2.jpg'), caption: 'Ảnh thực tế Google Maps: Phòng ngủ trang bị đầy đủ điều hòa, tivi, bàn trà' },
+                { src: getAssetPath('real_map_3.jpg'), caption: 'Phòng tắm & WC khép kín riêng biệt 100% từng phòng, nước nóng lạnh 24/24' }
             ]
         },
         'phong-thoang-mat': {
-            title: 'Phòng Đôi Rộng Rãi (2 Giường Rộng • Có 2 Phòng)',
+            title: 'Toàn Bộ Ảnh Phòng Đôi (Phòng 201, 202 • 2 Giường To Rộng 2m x 1.8m)',
             roomSelectName: 'Phòng Đôi (2 Giường Rộng)',
             images: [
-                { src: './images/real_map_1.jpg', caption: 'Ảnh thực tế: Nền gạch vân đá sáng bóng, điều hòa 1 chiều làm mát sâu, rèm cửa dày chống nắng' },
-                { src: './images/hero_room.jpg', caption: 'Phòng 2 giường rộng rãi cho 2-4 người hoặc gia đình, ga gối mới tinh thơm tho' },
-                { src: './images/bathroom.jpg', caption: 'Trang thiết bị vệ sinh cao cấp khép kín, vòi tắm sen nóng lạnh êm ái' }
+                { src: getAssetPath('202_2.jpg'), caption: 'Phòng 202: 2 Giường to rộng 2m x 1.8m, tủ quần áo gỗ, quạt mát, rèm cửa' },
+                { src: getAssetPath('201_1.jpg'), caption: 'Phòng 201: Giường lớn đệm êm, tranh nghệ thuật, bàn trà và khăn tắm sạch sẽ' },
+                { src: getAssetPath('202_1.jpg'), caption: 'Phòng 202: TV treo tường, bàn trà tiếp khách, nền gạch vân đá sáng bóng' },
+                { src: getAssetPath('real_map_1.jpg'), caption: 'Ảnh thực tế Google Maps: Không gian thoáng mát, nền gạch vân đá, rèm cửa cản nắng' },
+                { src: getAssetPath('real_map_3.jpg'), caption: 'Phòng tắm & WC khép kín riêng biệt 100% từng phòng' }
+            ]
+        },
+        'phong-doi': {
+            title: 'Toàn Bộ Ảnh Phòng Đôi (Phòng 201, 202 • 2 Giường To Rộng 2m x 1.8m)',
+            roomSelectName: 'Phòng Đôi (2 Giường Rộng)',
+            images: [
+                { src: getAssetPath('202_2.jpg'), caption: 'Phòng 202: 2 Giường to rộng 2m x 1.8m, tủ quần áo gỗ, quạt mát, rèm cửa' },
+                { src: getAssetPath('201_1.jpg'), caption: 'Phòng 201: Giường lớn đệm êm, tranh nghệ thuật, bàn trà và khăn tắm sạch sẽ' },
+                { src: getAssetPath('202_1.jpg'), caption: 'Phòng 202: TV treo tường, bàn trà tiếp khách, nền gạch vân đá sáng bóng' },
+                { src: getAssetPath('real_map_1.jpg'), caption: 'Ảnh thực tế Google Maps: Không gian thoáng mát, nền gạch vân đá, rèm cửa cản nắng' },
+                { src: getAssetPath('real_map_3.jpg'), caption: 'Phòng tắm & WC khép kín riêng biệt 100% từng phòng' }
             ]
         },
         'phong-ve-sinh': {
-            title: 'Phòng Tắm & Tiện Nghi Sạch Sẽ (Trang Bị Cả 5 Phòng)',
+            title: 'Phòng Tắm & Tiện Nghi Sạch Sẽ (Trang Bị Cả 5 Phòng 201 - 205)',
             roomSelectName: 'Phòng Tắm & Tiện Nghi Sạch Sẽ',
             images: [
-                { src: './images/real_map_3.jpg', caption: 'Ảnh thực tế Google Maps: Phòng tắm riêng biệt 100% trong phòng, ốp lát gạch men sạch tinh' },
-                { src: './images/bathroom.jpg', caption: 'Hệ thống bình tắm nước nóng 24/24, vòi sen hoa tiện nghi' },
-                { src: './images/real_map_2.jpg', caption: 'Khăn tắm giặt sấy thơm tho, xà phòng, dầu gội, bàn chải mới miễn phí' }
+                { src: getAssetPath('real_map_3.jpg'), caption: 'Ảnh thực tế Google Maps: Phòng tắm riêng biệt 100% trong phòng, ốp lát gạch men sạch tinh' },
+                { src: getAssetPath('202_2.jpg'), caption: 'Cửa phòng vệ sinh riêng khép kín ngay trong từng phòng nghỉ' },
+                { src: getAssetPath('204_2.jpg'), caption: 'Khăn tắm giặt sấy thơm tho, bàn chải, xà phòng mới miễn phí' }
             ]
         }
     };
@@ -449,13 +518,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle .btn-select-room (from 5-room inventory diagram)
     document.querySelectorAll('.btn-select-room').forEach(btn => {
         btn.addEventListener('click', () => {
-            const roomCode = btn.getAttribute('data-room-code');
+            const roomCode = btn.getAttribute('data-room-code') || btn.getAttribute('data-room-name');
             const roomType = btn.getAttribute('data-room-type');
+            const bedInfo = btn.getAttribute('data-bed-info') || '';
             const roomTypeSelect = document.getElementById('roomType');
-            const noteInput = document.getElementById('notes');
+            const noteInput = document.getElementById('note') || document.getElementById('notes');
 
             if (roomTypeSelect) {
-                if (roomType === 'single') {
+                if (roomType === 'single' || (roomCode && (roomCode.includes('203') || roomCode.includes('204') || roomCode.includes('205') || roomCode.includes('Đơn')))) {
                     roomTypeSelect.value = 'Phòng Đơn (1 Giường Lớn)';
                 } else {
                     roomTypeSelect.value = 'Phòng Đôi (2 Giường Rộng)';
@@ -463,7 +533,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (noteInput && roomCode) {
-                noteInput.value = `Khách ưu tiên chọn phòng: ${roomCode}`;
+                noteInput.value = `Khách ưu tiên chọn phòng: ${roomCode}${bedInfo ? ' (' + bedInfo + ')' : ''}`;
             }
 
             const bookingSec = document.getElementById('dat-phong');
